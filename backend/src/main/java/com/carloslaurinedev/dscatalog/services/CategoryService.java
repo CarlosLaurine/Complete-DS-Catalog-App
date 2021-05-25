@@ -1,10 +1,12 @@
 package com.carloslaurinedev.dscatalog.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.carloslaurinedev.dscatalog.dto.CategoryDTO;
 import com.carloslaurinedev.dscatalog.entities.Category;
@@ -29,6 +31,19 @@ public class CategoryService {
 		 */
 
 		return dtoList;
+
+	}
+
+	@Transactional(readOnly = true)
+	public CategoryDTO findById(Long id) {
+
+		Optional<Category> obj = repository.findById(id);
+
+		Category category = obj.get();
+
+		CategoryDTO dto = new CategoryDTO(category);
+
+		return dto;
 
 	}
 
