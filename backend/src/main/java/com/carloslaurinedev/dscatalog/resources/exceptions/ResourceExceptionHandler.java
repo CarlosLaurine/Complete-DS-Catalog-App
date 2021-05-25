@@ -1,4 +1,4 @@
- package com.carloslaurinedev.dscatalog.resources.exceptions;
+package com.carloslaurinedev.dscatalog.resources.exceptions;
 
 import java.time.Instant;
 
@@ -14,18 +14,18 @@ import com.carloslaurinedev.dscatalog.services.exceptions.EntityNotFoundExceptio
 @ControllerAdvice
 public class ResourceExceptionHandler {
 
-	@ExceptionHandler
-	public ResponseEntity<StandardError> entityNotFound(EntityNotFoundException e, HttpServletRequest request){
-	
+	@ExceptionHandler(EntityNotFoundException.class)
+	public ResponseEntity<StandardError> entityNotFound(EntityNotFoundException e, HttpServletRequest request) {
+
 		StandardError error = new StandardError();
-		
+
 		error.setTimestamp(Instant.now());
 		error.setStatus(HttpStatus.NOT_FOUND.value());
 		error.setError("Resource not Found");
 		error.setMessage(e.getMessage());
 		error.setPath(request.getRequestURI());
-		
+
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
-		
-}
+
+	}
 }

@@ -22,12 +22,12 @@ public class CategoryService {
 	@org.springframework.transaction.annotation.Transactional(readOnly = true)
 	public List<CategoryDTO> findAll() {
 
-		List<Category> catList = repository.findAll();
+		List<Category> entityList = repository.findAll();
 
-		List<CategoryDTO> dtoList = catList.stream().map(cat -> new CategoryDTO(cat)).collect(Collectors.toList());
+		List<CategoryDTO> dtoList = entityList.stream().map(category -> new CategoryDTO(category)).collect(Collectors.toList());
 
 		/*
-		 * List<CategoryDTO> dtoList = new ArrayList<>(); for(Category cat: catList) {
+		 * List<CategoryDTO> dtoList = new ArrayList<>(); for(Category cat: categoryList) {
 		 * dtoList.add(new CategoryDTO(cat)); }
 		 */
 
@@ -46,6 +46,18 @@ public class CategoryService {
 
 		return dto;
 
+	}
+	
+	@Transactional
+	public CategoryDTO insert(CategoryDTO dto) {
+
+		Category category = new Category();
+		
+		category.setName(dto.getName());
+		
+		dto = new CategoryDTO(repository.save(category));
+		
+		return dto;
 	}
 
 }
