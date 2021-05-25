@@ -14,6 +14,7 @@ public class CategoryService {
 	@Autowired
 	private CategoryRepository repository;
 	
+	@org.springframework.transaction.annotation.Transactional(readOnly = true)
 	public List<Category> findAll(){
 		return repository.findAll();
 	}
