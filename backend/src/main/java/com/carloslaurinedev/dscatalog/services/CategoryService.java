@@ -9,6 +9,8 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,6 +40,17 @@ public class CategoryService {
 		 */
 
 		return dtoList;
+
+	}
+
+	@Transactional(readOnly = true)
+	public Page<CategoryDTO> findAllPaged(PageRequest pageRequest) {
+
+		Page<Category> entityPage = repository.findAll(pageRequest);
+
+		Page<CategoryDTO> dtoPage = entityPage.map(category -> new CategoryDTO(category));
+
+		return dtoPage;
 
 	}
 
