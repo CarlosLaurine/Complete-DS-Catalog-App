@@ -18,20 +18,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.carloslaurinedev.dscatalog.dto.CategoryDTO;
-import com.carloslaurinedev.dscatalog.services.CategoryService;
+import com.carloslaurinedev.dscatalog.dto.ProductDTO;
+import com.carloslaurinedev.dscatalog.services.ProductService;
 
 @RestController
 
-@RequestMapping(value = "/categories")
+@RequestMapping(value = "/products")
 
-public class CategoryResource {
+public class ProductResource {
 
 	@Autowired
-	private CategoryService service;
+	private ProductService service;
 
 	@GetMapping
-	public ResponseEntity<Page<CategoryDTO>> findAll(
+	public ResponseEntity<Page<ProductDTO>> findAll(
 
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "12") Integer linesPerPage,
@@ -42,21 +42,21 @@ public class CategoryResource {
 
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 
-		Page<CategoryDTO> currentPage = service.findAllPaged(pageRequest);
+		Page<ProductDTO> currentPage = service.findAllPaged(pageRequest);
 
 		return ResponseEntity.ok().body(currentPage);
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<CategoryDTO> findById(@PathVariable Long id) {
+	public ResponseEntity<ProductDTO> findById(@PathVariable Long id) {
 
-		CategoryDTO dto = service.findById(id);
+		ProductDTO dto = service.findById(id);
 
 		return ResponseEntity.ok().body(dto);
 	}
 
 	@PostMapping
-	public ResponseEntity<CategoryDTO> insert(@RequestBody CategoryDTO dto) {
+	public ResponseEntity<ProductDTO> insert(@RequestBody ProductDTO dto) {
 
 		dto = service.insert(dto);
 
@@ -66,7 +66,7 @@ public class CategoryResource {
 	}
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<CategoryDTO> update(@PathVariable Long id, @RequestBody CategoryDTO dto) {
+	public ResponseEntity<ProductDTO> update(@PathVariable Long id, @RequestBody ProductDTO dto) {
 
 		dto = service.update(id, dto);
 
