@@ -28,7 +28,7 @@ public class ProductService {
 
 	@Autowired
 	private ProductRepository repository;
-	
+
 	@Autowired
 	private CategoryRepository catRepository;
 
@@ -94,7 +94,7 @@ public class ProductService {
 			Product entity = repository.getOne(id);
 
 			tranformDtoIntoEntity(entity, dto);
-			
+
 			entity = repository.save(entity);
 			dto = new ProductDTO(entity);
 			return dto;
@@ -127,24 +127,25 @@ public class ProductService {
 
 		}
 	}
-	
+
+	@SuppressWarnings("deprecation")
 	private void tranformDtoIntoEntity(Product entity, ProductDTO dto) {
-		
+
 		entity.setName(dto.getName());
 		entity.setDescription(dto.getDescription());
 		entity.setDate(dto.getDate());
 		entity.setImgUrl(dto.getImgUrl());
 		entity.setPrice(dto.getPrice());
-		
-		//Clearing all possible pre-existing categories at the entity
+
+		// Clearing all possible pre-existing categories at the entity
 		entity.getCategories().clear();
-		
-		for(CategoryDTO categoryDto : dto.getCategories()) {
-			
+
+		for (CategoryDTO categoryDto : dto.getCategories()) {
+
 			Category categoryEntity = catRepository.getOne(categoryDto.getId());
-			
+
 			entity.getCategories().add(categoryEntity);
-			
+
 		}
 	}
 
