@@ -14,32 +14,30 @@ import javax.validation.constraints.Size;
 import com.carloslaurinedev.dscatalog.entities.Category;
 import com.carloslaurinedev.dscatalog.entities.Product;
 
-import kotlin.SinceKotlin;
-
-public class ProductDTO implements Serializable{
+public class ProductDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
-	
+
 	@Size(max = 60, min = 5, message = "Name must contain between 5 and 60 Characters")
-	@NotBlank(message="Mandatory Field")
+	@NotBlank(message = "Mandatory Field")
 	private String name;
-	
-	@NotBlank(message="Mandatory Field")
+
+	@NotBlank(message = "Mandatory Field")
 	private String description;
-	
+
 	@Positive(message = "Price must be a Positive Value")
 	private Double price;
 	private String imgUrl;
-	
+
 	@PastOrPresent(message = "Product's Date cannot be future")
 	private Instant date;
-	
-	private List <CategoryDTO> categories = new ArrayList<>();
-	
+
+	private List<CategoryDTO> categories = new ArrayList<>();
+
 	public ProductDTO() {
-		
+
 	}
 
 	public ProductDTO(Long id, String name, String description, Double price, String imgUrl, Instant date) {
@@ -50,7 +48,7 @@ public class ProductDTO implements Serializable{
 		this.imgUrl = imgUrl;
 		this.date = date;
 	}
-	
+
 	public ProductDTO(Product product) {
 		this.id = product.getId();
 		this.name = product.getName();
@@ -59,11 +57,11 @@ public class ProductDTO implements Serializable{
 		this.imgUrl = product.getImgUrl();
 		this.date = product.getDate();
 	}
-	
+
 	public ProductDTO(Product product, Set<Category> categories) {
-		
+
 		this(product);
-		
+
 		categories.forEach(category -> this.categories.add(new CategoryDTO(category)));
 	}
 
@@ -122,6 +120,5 @@ public class ProductDTO implements Serializable{
 	public void setCategories(List<CategoryDTO> categories) {
 		this.categories = categories;
 	}
-	
-	
+
 }
