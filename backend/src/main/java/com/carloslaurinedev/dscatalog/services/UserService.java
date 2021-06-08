@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.carloslaurinedev.dscatalog.dto.RoleDTO;
 import com.carloslaurinedev.dscatalog.dto.UserDTO;
 import com.carloslaurinedev.dscatalog.dto.UserInsertDTO;
+import com.carloslaurinedev.dscatalog.dto.UserUpdateDTO;
 import com.carloslaurinedev.dscatalog.entities.Role;
 import com.carloslaurinedev.dscatalog.entities.User;
 import com.carloslaurinedev.dscatalog.repositories.RoleRepository;
@@ -92,7 +93,7 @@ public class UserService {
 
 	@SuppressWarnings("deprecation")
 	@Transactional
-	public UserDTO update(Long id, UserDTO dto) {
+	public UserDTO update(Long id, UserUpdateDTO dto) {
 
 		try {
 
@@ -101,8 +102,8 @@ public class UserService {
 			tranformDtoIntoEntity(entity, dto);
 
 			entity = repository.save(entity);
-			dto = new UserDTO(entity);
-			return dto;
+			UserDTO userDTO = new UserDTO(entity);
+			return userDTO;
 
 		} catch (EntityNotFoundException e) {
 
