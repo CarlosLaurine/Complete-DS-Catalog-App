@@ -23,17 +23,17 @@ public class JwtTokenEnhancer implements TokenEnhancer {
 	public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
 
 		User user = userRepository.findByEmail(authentication.getName());
-		
+
 		Map<String, Object> additionalInfo = new HashMap<>();
-		
+
 		additionalInfo.put("userFirstName", user.getFirstName());
 		additionalInfo.put("userId", user.getId());
-		
+
 		DefaultOAuth2AccessToken token = (DefaultOAuth2AccessToken) accessToken;
-		
+
 		token.setAdditionalInformation(additionalInfo);
-		
-		return token;
+
+		return accessToken;
 	}
 
 }
