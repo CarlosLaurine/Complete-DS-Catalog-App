@@ -60,7 +60,7 @@ public class ProductResourceTests {
 		nonExistingId = 2000L;
 		relatedId = 3L;
 		
-		when(service.findAllPaged(ArgumentMatchers.any())).thenReturn(page);
+		when(service.search(ArgumentMatchers.any())).thenReturn(page);
 
 		when(service.findById(existingId)).thenReturn(productDTO);
 		doThrow(ResourceNotFoundException.class).when(service).findById(nonExistingId);
