@@ -54,7 +54,7 @@ public class ProductService {
 
 		Category cat = (categoryId == 0) ? null : catRepository.getOne(categoryId);
 
-		Page<Product> entityPage = repository.search(pageable, categoryId);
+		Page<Product> entityPage = repository.search(pageable, cat);
 
 		Page<ProductDTO> dtoPage = entityPage.map(entity -> new ProductDTO(entity));
 
