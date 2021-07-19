@@ -33,11 +33,12 @@ public class ProductResource {
 
 	@GetMapping
 	public ResponseEntity<Page<ProductDTO>> findAll(Pageable pageable,
-			@RequestParam(value = "categoryId", defaultValue = "0") Long categoryId) {
+			@RequestParam(value = "categoryId", defaultValue = "0") Long categoryId,
+			@RequestParam(value = "name", defaultValue = "") String name) {
 
 		// Spring Standard Pageable Request Parameters - "page","size" and "sort"
 
-		Page<ProductDTO> currentPage = service.findAllPaged(pageable, categoryId);
+		Page<ProductDTO> currentPage = service.findAllPaged(pageable, categoryId, name.trim());
 
 		return ResponseEntity.ok().body(currentPage);
 	}
