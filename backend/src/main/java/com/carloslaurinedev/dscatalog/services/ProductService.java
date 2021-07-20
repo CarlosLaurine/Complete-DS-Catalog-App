@@ -57,7 +57,9 @@ public class ProductService {
 
 		Page<Product> entityPage = repository.search(pageable, cats, name);
 
-		Page<ProductDTO> dtoPage = entityPage.map(entity -> new ProductDTO(entity));
+		repository.findProductsWithTheirRespectiveCategories(entityPage.getContent());
+
+		Page<ProductDTO> dtoPage = entityPage.map(entity -> new ProductDTO(entity, entity.getCategories()));
 
 		return dtoPage;
 
