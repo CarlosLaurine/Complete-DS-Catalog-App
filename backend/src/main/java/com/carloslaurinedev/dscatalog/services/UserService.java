@@ -40,7 +40,7 @@ public class UserService implements UserDetailsService {
 	@Autowired
 	private UserRepository repository;
 	
-	@Autowired
+	@Autowired 
 	private RoleRepository roleRepository;
 	
 	@Autowired
