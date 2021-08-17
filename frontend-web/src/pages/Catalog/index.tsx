@@ -1,10 +1,8 @@
-import Navbar from 'components/Navbar';
 import ProductCard from 'components/ProductCard';
 
 const Catalog = () => {
   return (
     <>
-      <Navbar />
       <div className="my-4 container">
         <div className="row">
           <div className="col-xl-3 col-lg-4 col-sm-6">

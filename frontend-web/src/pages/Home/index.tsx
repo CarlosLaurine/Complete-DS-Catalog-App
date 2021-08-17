@@ -1,4 +1,3 @@
-import Navbar from 'components/Navbar';
 import ButtonIcon from 'components/ButtonIcon';
 import { ReactComponent as MainImg } from 'assets/images/main-vectorized-img.svg';
 import './style.css';
@@ -6,7 +5,6 @@ import './style.css';
 const Home = () => {
   return (
     <>
-      <Navbar />
       <div className="home-container">
         <div className="base-card home-card">
           <div className="home-content-container">
