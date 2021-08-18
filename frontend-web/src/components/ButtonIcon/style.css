@@ -1,3 +1,33 @@
-.button-icon {
+.btn-container {
+  display: flex;
+}
+
+.btn-container button {
+  border-radius: 10px 0px 0px 10px;
+}
+
+btn h5 {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #ffff;
+}
+
+.btn-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 50px;
+  width: 50px;
+  background-color: #33569b;
+  border-radius: 0px 10px 10px 0px;
+}
+
+@media (min-width: 576px) {
+  btn h5 {
+    font-size: 18px;
+  }
+  .btn-icon-container {
+    height: 70px;
+    width: 70px;
+  }
 }
