@@ -1,6 +1,7 @@
 import ButtonIcon from 'components/ButtonIcon';
 import { ReactComponent as MainImg } from 'assets/images/main-vectorized-img.svg';
 import './style.css';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   return (
@@ -14,7 +15,9 @@ const Home = () => {
                 We'll help you find the Best Products Available at the Market
               </p>
             </div>
-            <ButtonIcon />
+            <Link to="/products">
+              <ButtonIcon />
+            </Link>
           </div>
 
           <div className="home-image-container">
