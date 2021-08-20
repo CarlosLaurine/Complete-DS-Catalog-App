@@ -1,0 +1,29 @@
+.product-details-container {
+  font-size: 24px;
+  border: 1px solid orange;
+  padding: 15px;
+}
+
+.product-details-card {
+  border: 1px solid orange;
+  padding: 15px;
+}
+
+.return-container {
+  border: 1px solid orange;
+  display: flex;
+  align-items: center;
+}
+
+.return-container svg {
+  color: #407bff;
+  transform: rotate(-180deg);
+  margin: 0px 15px 0px 5px;
+}
+
+.return-container h1 {
+  font-size: 1em;
+  letter-spacing: -0.015em;
+  color: #263238;
+  text-transform: uppercase;
+}

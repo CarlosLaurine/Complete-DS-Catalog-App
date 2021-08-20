@@ -9,7 +9,7 @@
 btn h5 {
   font-size: 14px;
   text-transform: uppercase;
-  color: #ffff;
+  color: #ffffff;
 }
 
 .btn-icon-container {
@@ -20,6 +20,7 @@ btn h5 {
   width: 50px;
   background-color: #33569b;
   border-radius: 0px 10px 10px 0px;
+  color: #ffffff;
 }
 
 @media (min-width: 576px) {
