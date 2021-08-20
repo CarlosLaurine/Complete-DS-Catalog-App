@@ -3,6 +3,7 @@ import Navbar from 'components/Navbar';
 import Home from 'pages/Home';
 import Catalog from 'pages/Catalog';
 import Admin from 'pages/Admin';
+import ProductDetails from 'pages/ProductDetails';
 
 const Routes = () => {
   return (
@@ -12,11 +13,14 @@ const Routes = () => {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route path="/products">
+        <Route exact path="/products">
           <Catalog />
         </Route>
         <Route path="/admin">
           <Admin />
+        </Route>
+        <Route path="/products/:productId">
+          <ProductDetails />
         </Route>
       </Switch>
     </BrowserRouter>
