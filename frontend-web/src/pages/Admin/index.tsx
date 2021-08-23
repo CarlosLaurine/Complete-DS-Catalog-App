@@ -1,3 +1,4 @@
+import './style.css';
 import Navbar from './Navbar';
 
 const Admin = () => {
