@@ -1,3 +1,4 @@
+import './style.css';
 import ProductCard from 'components/ProductCard';
 import { Link } from 'react-router-dom';
 import { Product } from 'types/product';
@@ -22,7 +23,10 @@ const Catalog = () => {
 
   return (
     <>
-      <div className="my-4 container">
+      <div className="my-4 container catalog-container">
+        <div className="row catalog-header-container">
+          <h1>Product Catalog</h1>
+        </div>
         <div className="row">
           <div className="col-xl-3 col-lg-4 col-sm-6">
             <Link to="/products/1">
