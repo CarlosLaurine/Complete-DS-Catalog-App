@@ -5,16 +5,21 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { BASE_URL } from 'util/requests';
 import { Product } from 'types/product';
+import { useState, useEffect } from 'react';
 
 const ProductDetails = () => {
-  let product: Product;
+  
+  const [product, setProduct] = useState<Product>();
 
+  useEffect( () => {
+    
   axios.get(BASE_URL + '/products/1')
   .then(apiresponse => {
 
-    console.log(apiresponse.data);
+    setProduct(apiresponse.data)
 
   })
+  }, [])
 
   return (
     <div className="product-details-container">
@@ -30,13 +35,13 @@ const ProductDetails = () => {
           <div className="col-xl-6">
             <div className="product-image-container">
               <img
-                src="https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/3-big.jpg"
-                alt="Macbook Pro"
+                src={product?.imgUrl}
+                alt={product?.name}
               />
             </div>
             <div className="product-name-price-container">
-              <h1>Macbook Pro</h1>
-              <ProductPrice price={1250.0} />
+              <h1>{product?.name}</h1>
+              {product && <ProductPrice price={product?.price} />}
             </div>
           </div>
 
@@ -44,10 +49,7 @@ const ProductDetails = () => {
             <div className="product-text-description-container">
               <h2>Product's Description</h2>
               <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo,
-                voluptas iure magni nam facilis delectus nobis excepturi optio
-                officia dolorum distinctio maxime adipisci alias? Amet nobis ad
-                quia vel ut.
+                {product?.description}
               </p>
             </div>
           </div>
