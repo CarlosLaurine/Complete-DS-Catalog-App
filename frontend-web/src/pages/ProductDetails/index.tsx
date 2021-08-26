@@ -1,25 +1,31 @@
 import './style.css';
 import { ReactComponent as ArrowIcon } from 'assets/images/arrow-icon.svg';
 import ProductPrice from 'components/ProductPrice';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { BASE_URL } from 'util/requests';
 import { Product } from 'types/product';
 import { useState, useEffect } from 'react';
 
+type URLParam = {
+  productId : string;
+}
+
 const ProductDetails = () => {
   
+  const {productId} = useParams<URLParam>();
+
   const [product, setProduct] = useState<Product>();
 
   useEffect( () => {
     
-  axios.get(BASE_URL + '/products/1')
+  axios.get(`${BASE_URL}/products/${productId}`)
   .then(apiresponse => {
 
     setProduct(apiresponse.data)
 
   })
-  }, [])
+  }, [productId])
 
   return (
     <div className="product-details-container">
