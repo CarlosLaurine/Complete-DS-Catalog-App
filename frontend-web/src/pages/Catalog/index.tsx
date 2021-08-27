@@ -11,28 +11,22 @@ import { BASE_URL } from 'util/requests';
 import axios from 'axios';
 
 const Catalog = () => {
-
   const [springPage, setSpringPage] = useState<SpringPage<Product>>();
 
   useEffect(() => {
-
-    const axiosParams : AxiosParams = {
-
+    const axiosParams: AxiosParams = {
       method: 'GET',
-      url : `${BASE_URL}/products`,
+      url: `${BASE_URL}/products`,
       params: {
-        page : 0,
-        size : 12
-      }
+        page: 0,
+        size: 12,
+      },
+    };
 
-    }
-
-    axios(axiosParams)
-      .then(response => {
-        setSpringPage(response.data);
-      })
-
-  }, [])
+    axios(axiosParams).then((response) => {
+      setSpringPage(response.data);
+    });
+  }, []);
 
   return (
     <>
@@ -41,36 +35,15 @@ const Catalog = () => {
           <h1>Product Catalog</h1>
         </div>
         <div className="row">
-          <div className="col-xl-3 col-lg-4 col-sm-6">
-            <Link to="/products/1">
-              <ProductCard product={product} />
-            </Link>
-          </div>
-          <div className="col-xl-3 col-lg-4 col-sm-6">
-            <Link to="/products/1">
-              <ProductCard product={product} />
-            </Link>
-          </div>
-          <div className="col-xl-3 col-lg-4 col-sm-6">
-            <Link to="/products/1">
-              <ProductCard product={product} />
-            </Link>
-          </div>
-          <div className="col-xl-3 col-lg-4 col-sm-6">
-            <Link to="/products/1">
-              <ProductCard product={product} />
-            </Link>
-          </div>
-          <div className="col-xl-3 col-lg-4 col-sm-6">
-            <Link to="/products/1">
-              <ProductCard product={product} />
-            </Link>
-          </div>
-          <div className="col-xl-3 col-lg-4 col-sm-6">
-            <Link to="/products/1">
-              <ProductCard product={product} />
-            </Link>
-          </div>
+          {springPage?.content.map((product) => {
+            return (
+              <div className="col-xl-3 col-lg-4 col-sm-6" key={product.id}>
+                <Link to="/products/1">
+                  <ProductCard product={product} />
+                </Link>
+              </div>
+            );
+          })}
         </div>
 
         <div className="row">
