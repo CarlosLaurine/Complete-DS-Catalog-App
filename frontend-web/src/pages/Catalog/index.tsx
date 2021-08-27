@@ -9,9 +9,11 @@ import { useEffect } from 'react';
 import { AxiosParams } from 'types/vendor/axios';
 import { BASE_URL } from 'util/requests';
 import axios from 'axios';
+import ProductListLoader from './ProductListLoader';
 
 const Catalog = () => {
   const [springPage, setSpringPage] = useState<SpringPage<Product>>();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const axiosParams: AxiosParams = {
@@ -22,10 +24,15 @@ const Catalog = () => {
         size: 12,
       },
     };
+    setLoading(true);
 
-    axios(axiosParams).then((response) => {
-      setSpringPage(response.data);
-    });
+    axios(axiosParams)
+      .then((response) => {
+        setSpringPage(response.data);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   return (
@@ -35,7 +42,7 @@ const Catalog = () => {
           <h1>Product Catalog</h1>
         </div>
         <div className="row">
-          {springPage?.content.map((product) => {
+          {loading ? <ProductListLoader/> : (springPage?.content.map((product) => {
             return (
               <div className="col-xl-3 col-lg-4 col-sm-6" key={product.id}>
                 <Link to="/products/1">
@@ -43,7 +50,7 @@ const Catalog = () => {
                 </Link>
               </div>
             );
-          })}
+          }))}
         </div>
 
         <div className="row">
