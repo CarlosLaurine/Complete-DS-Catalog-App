@@ -4,6 +4,7 @@ import Home from 'pages/Home';
 import Catalog from 'pages/Catalog';
 import Admin from 'pages/Admin';
 import ProductDetails from 'pages/ProductDetails';
+import Auth from 'pages/Admin/Auth';
 
 const Routes = () => {
   return (
@@ -17,11 +18,14 @@ const Routes = () => {
           <Catalog />
         </Route>
         <Redirect from="/admin" to="/admin/products" exact />
-        <Route path="/admin">
+        <Route exact path="/admin">
           <Admin />
         </Route>
         <Route path="/products/:productId">
           <ProductDetails />
+        </Route>
+        <Route path="/admin/auth">
+          <Auth />
         </Route>
       </Switch>
     </BrowserRouter>
