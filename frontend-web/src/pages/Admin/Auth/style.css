@@ -1,0 +1,34 @@
+.auth-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  border: 1px solid blue;
+}
+
+.auth-banner-container {
+  display: none;
+  border: 1px solid purple;
+}
+
+.auth-form-container {
+  width: 100%;
+  border: 1px solid orange;
+}
+
+@media (min-width: 576px) {
+  .auth-form-container {
+    width: 490px;
+  }
+}
+
+@media (min-width: 768px) {
+  .auth-form-container {
+    width: 550px;
+  }
+}
+@media (min-width: 1200px) {
+  .auth-banner-container {
+    display: flex;
+    flex-direction: column;
+  }
+}

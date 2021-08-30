@@ -1,3 +1,4 @@
+import './style.css';
 import { Route, Switch } from 'react-router-dom';
 import { ReactComponent as BannerImg } from 'assets/images/auth-banner-img.svg';
 
