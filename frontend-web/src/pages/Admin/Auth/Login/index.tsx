@@ -31,7 +31,7 @@ const Login = () => {
           <ButtonIcon txt="LOGIN" />
         </div>
         <div className="signup-container">
-          <span className="not-registered">Don't Have a Login?</span>
+          <span className="not-registered">Not Registered?</span>
           <Link to="/admin/auth/register" className="login-link-register">
             Sign-Up
           </Link>
