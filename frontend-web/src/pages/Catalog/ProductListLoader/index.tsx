@@ -1,5 +1,5 @@
-import ContentLoader from 'react-content-loader';
 import './style.css';
+import ContentLoader from 'react-content-loader';
 
 const ProductListLoader = () => (
   <div className="product-card-loader-container">

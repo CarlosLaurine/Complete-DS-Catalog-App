@@ -6,9 +6,8 @@ import Pagbar from 'components/Pagbar';
 import { useState } from 'react';
 import { SpringPage } from 'types/vendor/spring';
 import { useEffect } from 'react';
-import { AxiosParams } from 'types/vendor/axios';
 import { BASE_URL } from 'util/requests';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import ProductListLoader from './ProductListLoader';
 
 const Catalog = () => {
@@ -16,9 +15,10 @@ const Catalog = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const axiosParams: AxiosParams = {
-      method: 'GET',
-      url: `${BASE_URL}/products`,
+    const axiosParams: AxiosRequestConfig = {
+      method: 'get',
+      baseURL: BASE_URL,
+      url: '/products',
       params: {
         page: 0,
         size: 12,
@@ -42,15 +42,19 @@ const Catalog = () => {
           <h1>Product Catalog</h1>
         </div>
         <div className="row">
-          {loading ? <ProductListLoader/> : (springPage?.content.map((product) => {
-            return (
-              <div className="col-xl-3 col-lg-4 col-sm-6" key={product.id}>
-                <Link to="/products/1">
-                  <ProductCard product={product} />
-                </Link>
-              </div>
-            );
-          }))}
+          {loading ? (
+            <ProductListLoader />
+          ) : (
+            springPage?.content.map((product) => {
+              return (
+                <div className="col-xl-3 col-lg-4 col-sm-6" key={product.id}>
+                  <Link to="/products/1">
+                    <ProductCard product={product} />
+                  </Link>
+                </div>
+              );
+            })
+          )}
         </div>
 
         <div className="row">

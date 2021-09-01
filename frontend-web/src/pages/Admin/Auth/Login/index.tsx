@@ -1,8 +1,7 @@
+import './style.css';
 import ButtonIcon from 'components/ButtonIcon';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-
-import './style.css';
 
 type FormData = {
   username: string;
