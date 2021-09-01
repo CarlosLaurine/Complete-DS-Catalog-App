@@ -11,7 +11,8 @@ type FormData = {
 };
 
 const Login = () => {
-  const { register, handleSubmit } = useForm<FormData>();
+  
+  const {register, handleSubmit, formState: { errors }} = useForm<FormData>();
 
   const [hasError, setHasError] = useState(false);
 
@@ -41,17 +42,25 @@ const Login = () => {
             type="text"
             className="base-input form-control"
             placeholder="Email"
-            {...register('username')}
+            {...register('username', {
+              required: 'Mandatory Field',
+            })}
           />
+          <div className="invalid-feedback d-block">{errors.username?.message}</div>
         </div>
+
         <div className="mb-2">
           <input
             type="password"
             className="base-input form-control"
             placeholder="Password"
-            {...register('password')}
+            {...register('password', {
+              required:"Mandatory Field"
+            })}
           />
+          <div className="invalid-feedback d-block">{errors.password?.message}</div>
         </div>
+
         <Link to="/admin/auth/recover" className="login-link-recover">
           Forgot Password
         </Link>
