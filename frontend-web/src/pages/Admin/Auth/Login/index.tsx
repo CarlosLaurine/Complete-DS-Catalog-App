@@ -44,6 +44,10 @@ const Login = () => {
             placeholder="Email"
             {...register('username', {
               required: 'Mandatory Field',
+              pattern : {
+                value : /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message : "Invalid Email"
+              }
             })}
           />
           <div className="invalid-feedback d-block">{errors.username?.message}</div>
