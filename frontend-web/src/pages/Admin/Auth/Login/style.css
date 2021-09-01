@@ -52,4 +52,10 @@
     padding: 40px;
     height: 580px;
   }
+
+  @media (min-width: 1200px) {
+    .login-card {
+      height: 640px;
+    }
+  }
 }
