@@ -2,6 +2,7 @@ import './style.css';
 import ButtonIcon from 'components/ButtonIcon';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { requestAPILogin } from 'util/requests';
 
 type FormData = {
   username: string;
@@ -12,7 +13,13 @@ const Login = () => {
   const { register, handleSubmit } = useForm<FormData>();
 
   const onSubmit = (formData: FormData) => {
-    console.log(formData);
+    requestAPILogin(formData)
+    .then((response) => {
+      console.log('Success => ', response);
+    })
+    .catch(error => {
+      console.log("Error => ", error)
+    })
   };
 
   return (
