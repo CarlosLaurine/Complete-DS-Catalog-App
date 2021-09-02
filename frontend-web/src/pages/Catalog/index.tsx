@@ -1,14 +1,13 @@
-import './style.css';
+import { AxiosRequestConfig } from 'axios';
+import Pagbar from 'components/Pagbar';
 import ProductCard from 'components/ProductCard';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Product } from 'types/product';
-import Pagbar from 'components/Pagbar';
-import { useState } from 'react';
 import { SpringPage } from 'types/vendor/spring';
-import { useEffect } from 'react';
-import { BASE_URL } from 'util/requests';
-import axios, { AxiosRequestConfig } from 'axios';
+import { requestAPI } from 'util/requests';
 import ProductListLoader from './ProductListLoader';
+import './style.css';
 
 const Catalog = () => {
   const [springPage, setSpringPage] = useState<SpringPage<Product>>();
@@ -17,7 +16,6 @@ const Catalog = () => {
   useEffect(() => {
     const axiosParams: AxiosRequestConfig = {
       method: 'get',
-      baseURL: BASE_URL,
       url: '/products',
       params: {
         page: 0,
@@ -26,7 +24,7 @@ const Catalog = () => {
     };
     setLoading(true);
 
-    axios(axiosParams)
+    requestAPI(axiosParams)
       .then((response) => {
         setSpringPage(response.data);
       })

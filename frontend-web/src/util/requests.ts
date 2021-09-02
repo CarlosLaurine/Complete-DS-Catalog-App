@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import qs from 'qs';
 
 export const BASE_URL =
@@ -27,7 +27,6 @@ const basicAuthHeader = () =>
   'Basic ' + window.btoa(CLIENT_ID + ':' + CLIENT_SECRET);
 
 export const requestAPILogin = (loginData: LoginData) => {
-  
   const headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
     Authorization: basicAuthHeader,
@@ -57,4 +56,8 @@ export const getAuthData = () => {
   const string = localStorage.getItem(tokenKey) ?? '{}';
   const obj = JSON.parse(string) as LoginResponse;
   return obj;
+};
+
+export const requestAPI = (config: AxiosRequestConfig) => {
+  return axios({ ...config, baseURL: BASE_URL });
 };
