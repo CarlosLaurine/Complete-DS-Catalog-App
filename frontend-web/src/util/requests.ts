@@ -7,6 +7,8 @@ export const BASE_URL =
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID ?? 'dscatalog';
 const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET ?? 'dscatalog123';
 
+const tokenKey = 'authData';
+
 type LoginData = {
   username: string;
   password: string;
@@ -25,14 +27,16 @@ const basicAuthHeader = () =>
   'Basic ' + window.btoa(CLIENT_ID + ':' + CLIENT_SECRET);
 
 export const requestAPILogin = (loginData: LoginData) => {
+  
   const headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
     Authorization: basicAuthHeader,
   };
 
   const data = qs.stringify({
-    username: 'maria@gmail.com',
-    password: '123456',
+    username: loginData.username,
+    password: loginData.password,
+    //...loginData,
     grant_type: 'password',
   });
 
@@ -47,4 +51,10 @@ export const requestAPILogin = (loginData: LoginData) => {
 
 export const saveAuthData = (loginResponse: LoginResponse) => {
   localStorage.setItem('authData', JSON.stringify(loginResponse));
+};
+
+export const getAuthData = () => {
+  const string = localStorage.getItem(tokenKey) ?? '{}';
+  const obj = JSON.parse(string) as LoginResponse;
+  return obj;
 };
