@@ -12,6 +12,15 @@ type LoginData = {
   password: string;
 };
 
+type LoginResponse = {
+  access_token: string;
+  token_type: string;
+  expires_in: number;
+  scope: string;
+  userFirstName: string;
+  userId: number;
+};
+
 const basicAuthHeader = () =>
   'Basic ' + window.btoa(CLIENT_ID + ':' + CLIENT_SECRET);
 
@@ -34,4 +43,8 @@ export const requestAPILogin = (loginData: LoginData) => {
     headers,
     data,
   });
+};
+
+export const saveAuthData = (loginResponse: LoginResponse) => {
+  localStorage.setItem('authData', JSON.stringify(loginResponse));
 };
