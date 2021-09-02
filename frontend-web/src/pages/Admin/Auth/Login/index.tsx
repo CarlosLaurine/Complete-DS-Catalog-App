@@ -40,7 +40,7 @@ const Login = () => {
         <div className="mb-4">
           <input
             type="text"
-            className="base-input form-control"
+            className={`base-input form-control ${errors.username ? 'is-invalid' : ''}`}
             placeholder="Email"
             {...register('username', {
               required: 'Mandatory Field',
@@ -56,7 +56,7 @@ const Login = () => {
         <div className="mb-2">
           <input
             type="password"
-            className="base-input form-control"
+            className={`base-input form-control ${errors.password ? 'is-invalid' : ''}`}
             placeholder="Password"
             {...register('password', {
               required:"Mandatory Field"
