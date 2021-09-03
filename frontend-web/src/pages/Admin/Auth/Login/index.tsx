@@ -1,7 +1,7 @@
 import './style.css';
 import ButtonIcon from 'components/ButtonIcon';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { getAuthData, requestAPILogin, saveAuthData } from 'util/requests';
 import { useState } from 'react';
 
@@ -11,9 +11,12 @@ type FormData = {
 };
 
 const Login = () => {
+
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
 
   const [hasError, setHasError] = useState(false);
+
+  const history = useHistory();
 
   const onSubmit = (formData: FormData) => {
     requestAPILogin(formData)
@@ -23,6 +26,7 @@ const Login = () => {
         console.log("Generated Token => " + authToken)
         setHasError(false);
         console.log('Success => ', response);
+        history.push('/admin');
       })
       .catch((error) => {
         setHasError(true);
