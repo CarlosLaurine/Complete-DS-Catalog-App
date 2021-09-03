@@ -49,7 +49,7 @@ export const requestAPILogin = (loginData: LoginData) => {
 };
 
 export const saveAuthData = (loginResponse: LoginResponse) => {
-  localStorage.setItem('authData', JSON.stringify(loginResponse));
+  localStorage.setItem(tokenKey, JSON.stringify(loginResponse));
 };
 
 export const getAuthData = () => {
@@ -59,5 +59,14 @@ export const getAuthData = () => {
 };
 
 export const requestAPI = (config: AxiosRequestConfig) => {
-  return axios({ ...config, baseURL: BASE_URL });
+  
+  const headers = config.withCredentials ? {
+
+    ...config.headers,
+    Authorization: "Bearer " + getAuthData().access_token
+    
+
+  } : config.headers
+
+  return axios({ ...config, baseURL: BASE_URL, headers });
 };
