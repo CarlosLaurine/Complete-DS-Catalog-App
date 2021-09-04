@@ -24,6 +24,14 @@ type LoginResponse = {
   userId: number;
 };
 
+type Role = 'ROLE_ADMIN' | 'ROLE_OPERATOR';
+
+type TokenData = {
+  exp: number;
+  user_name: string;
+  authorities: Role[];
+};
+
 const basicAuthHeader = () =>
   'Basic ' + window.btoa(CLIENT_ID + ':' + CLIENT_SECRET);
 
