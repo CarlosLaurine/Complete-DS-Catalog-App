@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import qs from 'qs';
 import history from './history';
+import jwtDecode from 'jwt-decode';
 
 export const BASE_URL =
   process.env.REACT_APP_BACKEND_URL ?? 'http://localhost:8080';
@@ -108,3 +109,21 @@ axios.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+export const getTokenData = (): TokenData | undefined => {
+  const accessToken = getAuthData().access_token;
+
+  try {
+    return jwtDecode(accessToken) as TokenData;
+  } catch (error) {
+    return undefined;
+  }
+};
+
+export const isAuthenticated = (): boolean => {
+  const tokenData = getTokenData();
+
+  const authenticated = (tokenData && tokenData.exp > Date.now() / 1000) ? true : false;
+
+  return authenticated;
+};
