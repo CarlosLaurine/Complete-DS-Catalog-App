@@ -15,6 +15,7 @@ const Users = () => {
         page: 0,
         size: 12,
       },
+      
     };
 
     requestAPI(params).then((response) => {

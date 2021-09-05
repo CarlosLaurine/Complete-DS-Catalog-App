@@ -19,7 +19,7 @@ const Auth = () => {
           <Route path="/admin/auth/login">
             <Login />
           </Route>
-          <Route path="/admin/auth/signup">
+          <Route path="/admin/auth/register">
             <h1>Signup Card</h1>
           </Route>
           <Route path="/admin/auth/recover">

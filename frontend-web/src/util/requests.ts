@@ -123,7 +123,8 @@ export const getTokenData = (): TokenData | undefined => {
 export const isAuthenticated = (): boolean => {
   const tokenData = getTokenData();
 
-  const authenticated = (tokenData && tokenData.exp > Date.now() / 1000) ? true : false;
+  const authenticated =
+    tokenData && tokenData.exp > Date.now() / 1000 ? true : false;
 
   return authenticated;
 };
