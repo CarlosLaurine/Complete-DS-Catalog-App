@@ -1,8 +1,13 @@
 import './style.css';
 import ButtonIcon from 'components/ButtonIcon';
 import { useForm } from 'react-hook-form';
-import { Link, useHistory } from 'react-router-dom';
-import { getAuthData, getTokenData, requestAPILogin, saveAuthData } from 'util/requests';
+import { Link, useHistory, useLocation } from 'react-router-dom';
+import {
+  getAuthData,
+  getTokenData,
+  requestAPILogin,
+  saveAuthData,
+} from 'util/requests';
 import { useContext, useState } from 'react';
 import { AuthContext } from 'AuthContext';
 
@@ -11,11 +16,22 @@ type FormData = {
   password: string;
 };
 
+type LocationState = {
+  from: string;
+};
+
 const Login = () => {
+  const location = useLocation<LocationState>();
+
+  const { from } = location.state || { from: { pathname: '/admin' } };
 
   const { authContextData, setAuthContextData } = useContext(AuthContext);
 
-  const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
 
   const [hasError, setHasError] = useState(false);
 
@@ -26,14 +42,14 @@ const Login = () => {
       .then((response) => {
         saveAuthData(response.data);
         const authToken = getAuthData().access_token;
-        console.log("Generated Token => " + authToken)
+        console.log('Generated Token => ' + authToken);
         setHasError(false);
         console.log('Success => ', response);
         setAuthContextData({
           isAuthenticated: true,
           tokenData: getTokenData(),
-        })
-        history.push('/admin');
+        });
+        history.replace(from);
       })
       .catch((error) => {
         setHasError(true);
