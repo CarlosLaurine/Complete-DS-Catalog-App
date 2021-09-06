@@ -27,7 +27,7 @@ type LoginResponse = {
 
 type Role = 'ROLE_ADMIN' | 'ROLE_OPERATOR';
 
-type TokenData = {
+export type TokenData = {
   exp: number;
   user_name: string;
   authorities: Role[];
@@ -60,6 +60,10 @@ export const requestAPILogin = (loginData: LoginData) => {
 
 export const saveAuthData = (loginResponse: LoginResponse) => {
   localStorage.setItem(tokenKey, JSON.stringify(loginResponse));
+};
+
+export const removeAuthData = () => {
+  localStorage.removeItem(tokenKey);
 };
 
 export const getAuthData = () => {
