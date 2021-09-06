@@ -32,3 +32,28 @@
   padding-left: 40px;
   min-height: 70px;
 }
+
+.nav-login-logout {
+  display: none;
+}
+
+.nav-logged-username {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .nav-login-logout {
+    display: unset;
+    color: #ffffffff;
+    margin-right: 15px;
+  }
+}
+@media (min-width: 992px) {
+  .nav-login-logout {
+    margin-right: 40px;
+  }
+  .nav-logged-username {
+    display: unset;
+    margin-right: 20px;
+  }
+}

@@ -80,10 +80,12 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <div>
+        <div className="nav-login-logout">
           {authData.isAuthenticated ? (
             <>
-              <span>{authData.tokenData?.user_name}</span>
+              <span className="nav-logged-username">
+                {authData.tokenData?.user_name}
+              </span>
               <a href="#logout" onClick={handleClickLogout}>
                 Log Out
               </a>
