@@ -1,4 +1,6 @@
+import './style.css';
 import ProductCardCRUD from 'components/ProductCardCRUD';
+import { Link } from 'react-router-dom';
 
 const List = () => {
   const defaultProduct = {
@@ -23,16 +25,30 @@ const List = () => {
   };
 
   return (
-    <div>
-      <button className="text-white btn btn-primary">ADD</button>
-      <div>Search Bar</div>
-
-      <ProductCardCRUD product={defaultProduct} />
-      <ProductCardCRUD product={defaultProduct} />
-      <ProductCardCRUD product={defaultProduct} />
-      <ProductCardCRUD product={defaultProduct} />
-    
-    </div>
+    <>
+      <div className="product-crud-bar-container">
+        <Link to="/admin/products/create">
+          <button className="text-white btn btn-primary btn-crud-add">
+            ADD
+          </button>
+        </Link>
+        <div className="base-card product-filter-container">Search Bar</div>
+      </div>
+      <div className="row">
+        <div className="col-sm-6 col-md-12">
+          <ProductCardCRUD product={defaultProduct} />
+        </div>
+        <div className="col-sm-6 col-md-12">
+          <ProductCardCRUD product={defaultProduct} />
+        </div>
+        <div className="col-sm-6 col-md-12">
+          <ProductCardCRUD product={defaultProduct} />
+        </div>
+        <div className="col-sm-6 col-md-12">
+          <ProductCardCRUD product={defaultProduct} />
+        </div>
+      </div>
+    </>
   );
 };
 
