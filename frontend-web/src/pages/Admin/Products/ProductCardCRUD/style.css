@@ -1,23 +1,23 @@
-.product-card {
+.product-crud-card {
   margin-bottom: 30px;
 }
 
-.card-image-container {
+.product-crud-card-image-container {
   padding: 16px 0px;
   text-align: center;
   border-bottom: 1px solid #e1e1e1e1;
 }
 
-.card-image-container img {
+.product-crud-card-image-container img {
   height: 158px;
   width: 158px;
 }
 
-.card-content-container {
+.product-crud-card-content-container {
   padding: 15px 20px 30px 20px;
 }
 
-.card-content-container h6 {
+.product-crud-card-content-container h6 {
   color: #263238;
   font-size: 18px;
 }
