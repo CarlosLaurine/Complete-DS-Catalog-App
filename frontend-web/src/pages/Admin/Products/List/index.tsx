@@ -1,5 +1,5 @@
 import './style.css';
-import ProductCardCRUD from 'components/ProductCardCRUD';
+import ProductCardCRUD from 'pages/Admin/Products/ProductCardCRUD';
 import { Link } from 'react-router-dom';
 
 const List = () => {

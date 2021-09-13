@@ -21,3 +21,7 @@
   color: #263238;
   font-size: 18px;
 }
+.product-crud-categories-container {
+  display: flex;
+  padding: 0px 20px;
+}

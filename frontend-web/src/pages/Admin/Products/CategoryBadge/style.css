@@ -1,0 +1,12 @@
+.category-badge-container {
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: -0.015em;
+  text-align: center;
+  padding: 7.5px;
+  height: 33px;
+  color: #42424242;
+  background-color: #c4c4c4c4;
+  margin-right: 10px;
+  border-radius: 10px;
+}

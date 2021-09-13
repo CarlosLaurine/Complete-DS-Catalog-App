@@ -14,14 +14,16 @@ const ProductCardCRUD = ({ product }: Props) => {
       <div className="product-crud-card-image-container">
         <img src={product.imgUrl} alt={product.name} />
       </div>
-
-      <div className="product-crud-card-content-container">
-        <h6>{product.name}</h6>
-        <ProductPrice price={product.price} />
-      </div>
-      <div className="product-crud-categories-container">
-        <CategoryBadge />
-        <CategoryBadge />
+      <div>
+        <div className="product-crud-card-content-container">
+          <h6>{product.name}</h6>
+          <ProductPrice price={product.price} />
+        </div>
+        <div className="product-crud-categories-container">
+          {product.categories.map((category) => (
+            <CategoryBadge name={category.name} key={category.id} />
+          ))}
+        </div>
       </div>
     </div>
   );
