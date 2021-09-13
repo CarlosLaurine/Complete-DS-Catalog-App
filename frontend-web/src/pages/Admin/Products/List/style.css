@@ -1,3 +1,6 @@
+.product-crud-container {
+  max-width: 1260px;
+}
 .btn-crud-add {
   font-size: 16px;
   font-weight: bold;
