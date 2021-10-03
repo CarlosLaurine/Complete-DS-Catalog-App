@@ -56,6 +56,7 @@
   .product-crud-card-image-container {
     border-bottom: 1px solid #e1e1e1e1;
     border-bottom: 0;
+    width: 200px;
   }
 
   .product-crud-card-buttons-container {
