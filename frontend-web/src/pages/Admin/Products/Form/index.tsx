@@ -15,9 +15,12 @@ const Form = () => {
   } = useForm<Product>();
 
   const onSubmit = (formData: Product) => {
-    const data = { ...formData,
-      imgUrl: "https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/2-big.jpg", 
-      categories: [{ id: 1, name: '' }] };
+    const data = {
+      ...formData,
+      imgUrl:
+        'https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/2-big.jpg',
+      categories: [{ id: 1, name: '' }],
+    };
 
     const axiosParams: AxiosRequestConfig = {
       method: 'post',
@@ -27,7 +30,7 @@ const Form = () => {
     };
 
     requestAPI(axiosParams).then((response) => {
-      console.log(response.data);
+      history.push('/admin/products');
     });
   };
 
