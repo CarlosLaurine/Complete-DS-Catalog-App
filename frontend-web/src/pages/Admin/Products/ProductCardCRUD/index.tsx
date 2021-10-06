@@ -8,13 +8,13 @@ import './style.css';
 
 type Props = {
   product: Product;
+  onDelete: Function;
 };
 
-const ProductCardCRUD = ({ product }: Props) => {
+const ProductCardCRUD = ({ product, onDelete }: Props) => {
   const handleDelete = (productId: number) => {
-
-    if(!window.confirm("Are you sure you wish to delete this Item?")){
-        return;
+    if (!window.confirm('Are you sure you wish to delete this Item?')) {
+      return;
     }
 
     const axiosParams: AxiosRequestConfig = {
@@ -24,7 +24,7 @@ const ProductCardCRUD = ({ product }: Props) => {
     };
 
     requestAPI(axiosParams).then(() => {
-      console.log('Deleted ID => ' + productId);
+      onDelete();
     });
   };
 
