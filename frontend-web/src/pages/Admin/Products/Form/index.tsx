@@ -50,18 +50,10 @@ const Form = () => {
   }, [isEditing, productId, setValue]);
 
   const onSubmit = (formData: Product) => {
-    const data = {
-      ...formData,
-      imgUrl: isEditing
-        ? formData.imgUrl
-        : 'https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/2-big.jpg',
-      categories: isEditing ? formData.categories : [{ id: 1, name: '' }],
-    };
-
     const axiosParams: AxiosRequestConfig = {
       method: isEditing ? 'put' : 'post',
       url: isEditing ? `/products/${productId}` : '/products',
-      data,
+      data: formData,
       withCredentials: true,
     };
 
@@ -116,6 +108,11 @@ const Form = () => {
                     />
                   )}
                 />
+                {errors.categories && (
+                  <div className="invalid-feedback d-block">
+                    Mandatory Field
+                  </div>
+                )}
               </div>
 
               <div className="margin-bottom-30">
@@ -131,6 +128,26 @@ const Form = () => {
                 />
                 <div className="invalid-feedback d-block">
                   {errors.price?.message}
+                </div>
+              </div>
+
+              <div className="margin-bottom-30">
+                <input
+                  type="text"
+                  className={`base-input form-control ${
+                    errors.name ? 'is-invalid' : ''
+                  }`}
+                  placeholder="Product's Image URL"
+                  {...register('imgUrl', {
+                    required: 'Mandatory Field',
+                    pattern: {
+                      value: /^(https?|chrome):\/\/[^\s$.?#].[^\s]*$/gm,
+                      message: 'Must be a Valid URL',
+                    },
+                  })}
+                />
+                <div className="invalid-feedback d-block">
+                  {errors.imgUrl?.message}
                 </div>
               </div>
             </div>
