@@ -1,5 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
 import { useEffect, useState } from 'react';
+import CurrencyInput from 'react-currency-input-field';
 import { useForm, Controller } from 'react-hook-form';
 import { useHistory, useParams } from 'react-router-dom';
 import Select from 'react-select';
@@ -50,10 +51,15 @@ const Form = () => {
   }, [isEditing, productId, setValue]);
 
   const onSubmit = (formData: Product) => {
+    const data = {
+      ...formData,
+      price: String(formData.price).replace(',', '.'),
+    };
+
     const axiosParams: AxiosRequestConfig = {
       method: isEditing ? 'put' : 'post',
       url: isEditing ? `/products/${productId}` : '/products',
-      data: formData,
+      data,
       withCredentials: true,
     };
 
@@ -116,15 +122,21 @@ const Form = () => {
               </div>
 
               <div className="margin-bottom-30">
-                <input
-                  type="text"
-                  className={`base-input form-control ${
-                    errors.name ? 'is-invalid' : ''
-                  }`}
-                  placeholder="Price"
-                  {...register('price', {
-                    required: 'Mandatory Field',
-                  })}
+                <Controller
+                  name="price"
+                  rules={{ required: 'Mandatory Field' }}
+                  control={control}
+                  render={({ field }) => (
+                    <CurrencyInput
+                      placeholder="Price"
+                      className={`base-input form-control ${
+                        errors.name ? 'is-invalid' : ''
+                      }`}
+                      disableGroupSeparators={true}
+                      value={field.value}
+                      onValueChange={field.onChange}
+                    />
+                  )}
                 />
                 <div className="invalid-feedback d-block">
                   {errors.price?.message}
