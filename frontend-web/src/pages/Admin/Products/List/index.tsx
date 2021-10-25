@@ -6,6 +6,7 @@ import { SpringPage } from 'types/vendor/spring';
 import { Product } from 'types/product';
 import { AxiosRequestConfig } from 'axios';
 import { requestAPI } from 'util/requests';
+import Pagbar from 'components/Pagbar';
 
 const List = () => {
   const [springPage, setSpringPage] = useState<SpringPage<Product>>();
@@ -51,6 +52,7 @@ const List = () => {
           );
         })}
       </div>
+      <Pagbar />
     </div>
   );
 };
