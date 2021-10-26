@@ -1,14 +1,14 @@
-.admin-navbar-container {
-  padding: 10px;
-  background-color: #ffffff;
-}
-
-.admin-navbar-container ul {
+.admin-navbar-items-container {
   display: flex;
   justify-content: space-around;
   list-style-type: none;
   padding: 0px;
   margin: 0px;
+}
+
+.admin-navbar-container {
+  padding: 10px;
+  background-color: #ffffff;
 }
 
 .admin-navbar-item {
@@ -41,7 +41,7 @@
 }
 
 @media (min-width: 1200px) {
-  ul {
+  .admin-navbar-items-container {
     flex-direction: column;
     justify-content: unset;
   }

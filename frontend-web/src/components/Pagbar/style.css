@@ -19,12 +19,22 @@
   margin-right: 10px;
 }
 
+.pagination-link-active {
+  background-color: #407bff;
+}
+
 .pagination-item.active {
   background-color: #407bff;
 }
+
 .arrow-previous {
   transform: rotate(-180deg);
-  margin-right: 10px;
+  color: #407bff;
+}
+
+.arrow-next {
+  margin-left: 10px;
+  color: #407bff;
 }
 .arrow-active {
   color: #407bff;
