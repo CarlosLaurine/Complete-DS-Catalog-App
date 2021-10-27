@@ -13,12 +13,12 @@ const Catalog = () => {
   const [springPage, setSpringPage] = useState<SpringPage<Product>>();
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
+  const getProducts = (pageNumber: number) => {
     const axiosParams: AxiosRequestConfig = {
       method: 'get',
       url: '/products',
       params: {
-        page: 0,
+        page: pageNumber,
         size: 12,
       },
     };
@@ -31,6 +31,10 @@ const Catalog = () => {
       .finally(() => {
         setLoading(false);
       });
+  };
+
+  useEffect(() => {
+    getProducts(0);
   }, []);
 
   return (
@@ -59,6 +63,7 @@ const Catalog = () => {
           <Pagbar
             pageCount={springPage ? springPage.totalPages : 0}
             pageRangeDisplayed={3}
+            onChange={getProducts}
           />
         </div>
       </div>

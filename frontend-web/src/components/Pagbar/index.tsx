@@ -17,13 +17,21 @@ const Pagbar = ({ pageCount, pageRangeDisplayed, onChange }: Props) => {
       containerClassName="pagination-container"
       pageLinkClassName="pagination-item"
       breakClassName="pagination-item"
-      previousLabel={<ArrowIcon />}
+      previousLabel={
+        <div className="pagination-arrow-container">
+          <ArrowIcon />
+        </div>
+      }
       previousClassName="arrow-previous"
-      nextLabel={<ArrowIcon />}
+      nextLabel={
+        <div className="pagination-arrow-container">
+          <ArrowIcon />
+        </div>
+      }
       nextClassName="arrow-next"
       activeLinkClassName="pagination-link-active"
       disabledClassName="arrow-inactive"
-      onPageChange={(items) => (onChange) ? onChange(items.selected) : {}}
+      onPageChange={(items) => (onChange ? onChange(items.selected) : {})}
     />
   );
 };

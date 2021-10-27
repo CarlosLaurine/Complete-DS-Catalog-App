@@ -42,3 +42,7 @@
 .arrow-inactive {
   color: #e1e1e1e1;
 }
+.pagination-arrow-container {
+  display: flex;
+  align-items: center;
+}
