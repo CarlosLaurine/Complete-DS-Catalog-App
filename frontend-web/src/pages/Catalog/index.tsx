@@ -56,7 +56,10 @@ const Catalog = () => {
         </div>
 
         <div className="row">
-          <Pagbar />
+          <Pagbar
+            pageCount={springPage ? springPage.totalPages : 0}
+            pageRangeDisplayed={3}
+          />
         </div>
       </div>
     </>

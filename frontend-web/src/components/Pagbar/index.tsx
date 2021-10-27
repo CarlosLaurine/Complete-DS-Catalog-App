@@ -2,11 +2,16 @@ import './style.css';
 import { ReactComponent as ArrowIcon } from 'assets/images/arrow-icon.svg';
 import ReactPaginate from 'react-paginate';
 
-const Pagbar = () => {
+type Props = {
+  pageCount: number;
+  pageRangeDisplayed: number;
+};
+
+const Pagbar = ({ pageCount, pageRangeDisplayed }: Props) => {
   return (
     <ReactPaginate
-      pageCount={10}
-      pageRangeDisplayed={3}
+      pageCount={pageCount}
+      pageRangeDisplayed={pageRangeDisplayed}
       marginPagesDisplayed={1}
       containerClassName="pagination-container"
       pageLinkClassName="pagination-item"
