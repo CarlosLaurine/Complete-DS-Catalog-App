@@ -1,26 +1,26 @@
-import './style.css';
-import ProductCardCRUD from 'pages/Admin/Products/ProductCardCRUD';
-import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { SpringPage } from 'types/vendor/spring';
-import { Product } from 'types/product';
 import { AxiosRequestConfig } from 'axios';
-import { requestAPI } from 'util/requests';
 import Pagbar from 'components/Pagbar';
+import ProductCardCRUD from 'pages/Admin/Products/ProductCardCRUD';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Product } from 'types/product';
+import { SpringPage } from 'types/vendor/spring';
+import { requestAPI } from 'util/requests';
+import './style.css';
 
 const List = () => {
   const [springPage, setSpringPage] = useState<SpringPage<Product>>();
 
   useEffect(() => {
-    getProducts();
+    getProducts(0);
   }, []);
 
-  const getProducts = () => {
+  const getProducts = (pageNumber: number) => {
     const axiosParams: AxiosRequestConfig = {
       method: 'get',
       url: '/products',
       params: {
-        page: 0,
+        page: pageNumber,
         size: 3,
       },
     };
@@ -46,7 +46,7 @@ const List = () => {
             <div className="col-sm-6 col-md-12" key={product.id}>
               <ProductCardCRUD
                 product={product}
-                onDelete={() => getProducts()}
+                onDelete={() => getProducts(springPage.number)}
               />
             </div>
           );
@@ -55,6 +55,7 @@ const List = () => {
       <Pagbar
         pageCount={springPage ? springPage.totalPages : 0}
         pageRangeDisplayed={3}
+        onChange={getProducts}
       />
     </div>
   );

@@ -1,13 +1,14 @@
-import './style.css';
 import { ReactComponent as ArrowIcon } from 'assets/images/arrow-icon.svg';
 import ReactPaginate from 'react-paginate';
+import './style.css';
 
 type Props = {
   pageCount: number;
   pageRangeDisplayed: number;
+  onChange?: (pageNumber: number) => void;
 };
 
-const Pagbar = ({ pageCount, pageRangeDisplayed }: Props) => {
+const Pagbar = ({ pageCount, pageRangeDisplayed, onChange }: Props) => {
   return (
     <ReactPaginate
       pageCount={pageCount}
@@ -22,6 +23,7 @@ const Pagbar = ({ pageCount, pageRangeDisplayed }: Props) => {
       nextClassName="arrow-next"
       activeLinkClassName="pagination-link-active"
       disabledClassName="arrow-inactive"
+      onPageChange={(items) => (onChange) ? onChange(items.selected) : {}}
     />
   );
 };
