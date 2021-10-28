@@ -8,19 +8,27 @@ import { SpringPage } from 'types/vendor/spring';
 import { requestAPI } from 'util/requests';
 import './style.css';
 
+type ControlComponentsData = {
+  activePage: number;
+};
 const List = () => {
   const [springPage, setSpringPage] = useState<SpringPage<Product>>();
 
-  useEffect(() => {
-    getProducts(0);
-  }, []);
+  const [controlComponentsData, setControlComponentsData] =
+    useState<ControlComponentsData>({
+      activePage: 0,
+    });
 
-  const getProducts = (pageNumber: number) => {
+  const handlePageChange = (pageNumber: number) => {
+    setControlComponentsData({ activePage: pageNumber });
+  };
+
+  useEffect(() => {
     const axiosParams: AxiosRequestConfig = {
       method: 'get',
       url: '/products',
       params: {
-        page: pageNumber,
+        page: controlComponentsData.activePage,
         size: 3,
       },
     };
@@ -28,7 +36,7 @@ const List = () => {
     requestAPI(axiosParams).then((response) => {
       setSpringPage(response.data);
     });
-  };
+  }, [controlComponentsData]);
 
   return (
     <div className="product-crud-container">
@@ -44,10 +52,7 @@ const List = () => {
         {springPage?.content.map((product) => {
           return (
             <div className="col-sm-6 col-md-12" key={product.id}>
-              <ProductCardCRUD
-                product={product}
-                onDelete={() => getProducts(springPage.number)}
-              />
+              <ProductCardCRUD product={product} onDelete={() => {}} />
             </div>
           );
         })}
@@ -55,7 +60,7 @@ const List = () => {
       <Pagbar
         pageCount={springPage ? springPage.totalPages : 0}
         pageRangeDisplayed={3}
-        onChange={getProducts}
+        onChange={handlePageChange}
       />
     </div>
   );
