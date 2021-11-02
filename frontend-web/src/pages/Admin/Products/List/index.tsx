@@ -1,5 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
 import Pagbar from 'components/Pagbar';
+import ProductFilter from 'components/ProductFilter';
 import ProductCardCRUD from 'pages/Admin/Products/ProductCardCRUD';
 import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -49,7 +50,7 @@ const List = () => {
             ADD
           </button>
         </Link>
-        <div className="base-card product-filter-container">Search Bar</div>
+        <ProductFilter />
       </div>
       <div className="row">
         {springPage?.content.map((product) => {

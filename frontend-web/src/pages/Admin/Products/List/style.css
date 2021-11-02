@@ -10,11 +10,6 @@
   margin-bottom: 20px;
   border-radius: 10px;
 }
-.product-filter-container {
-  padding: 15px;
-  margin-bottom: 20px;
-}
-
 @media (min-width: 768px) {
   .product-crud-bar-container {
     display: flex;
@@ -22,12 +17,6 @@
   }
   .btn-crud-add {
     height: 60px;
-    margin-bottom: 0px;
-  }
-
-  .product-filter-container {
-    flex: 1;
-    margin-left: 20px;
     margin-bottom: 0px;
   }
 }
