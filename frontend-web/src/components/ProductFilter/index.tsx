@@ -37,7 +37,7 @@ const ProductFilter = () => {
             {...register('name')}
             name="name"
           />
-          <button>
+          <button className="product-filter-search-icon">
             <SearchIcon />
           </button>
         </div>
@@ -50,7 +50,8 @@ const ProductFilter = () => {
                 <Select
                   {...field}
                   options={selectCategories}
-                  classNamePrefix="product-crud-select"
+                  classNamePrefix="product-filter-select"
+                  placeholder="Category"
                   isClearable
                   getOptionLabel={(category: Category) => category.name}
                   getOptionValue={(category: Category) => String(category.id)}
@@ -58,7 +59,9 @@ const ProductFilter = () => {
               )}
             />
           </div>
-          <button className="btn btn-outline-secondary">CLEAN</button>
+          <button className="btn btn-outline-secondary btn-product-filter-clean">
+            CLEAN <span className="btn-product-filter-expression">FILTER</span>
+          </button>
         </div>
       </form>
     </div>
