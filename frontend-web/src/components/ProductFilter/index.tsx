@@ -8,16 +8,33 @@ import './style.css';
 
 type ProductFilterData = {
   name: string;
-  category: Category;
+  category: Category | null;
 };
 
 const ProductFilter = () => {
   const [selectCategories, setSelectCategories] = useState<Category[]>([]);
 
-  const { register, handleSubmit, control } = useForm<ProductFilterData>();
+  const { register, handleSubmit, control, getValues, setValue } =
+    useForm<ProductFilterData>();
 
   const onSubmit = (formData: ProductFilterData) => {
     console.log('SENT', formData);
+  };
+
+  const handleClearForm = () => {
+    setValue('name', '');
+    setValue('category', null);
+  };
+
+  const hadleCategoryChange = (value: Category) => {
+    setValue('category', value);
+
+    const formObj: ProductFilterData = {
+      name: getValues('name'),
+      category: getValues('category'),
+    };
+
+    console.log('SENT', formObj);
   };
 
   useEffect(() => {
@@ -55,11 +72,15 @@ const ProductFilter = () => {
                   isClearable
                   getOptionLabel={(category: Category) => category.name}
                   getOptionValue={(category: Category) => String(category.id)}
+                  onChange={(value) => hadleCategoryChange(value as Category)}
                 />
               )}
             />
           </div>
-          <button className="btn btn-outline-secondary btn-product-filter-clean">
+          <button
+            className="btn btn-outline-secondary btn-product-filter-clean"
+            onClick={handleClearForm}
+          >
             CLEAN <span className="btn-product-filter-expression">FILTER</span>
           </button>
         </div>
