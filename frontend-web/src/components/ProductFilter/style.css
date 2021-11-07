@@ -68,9 +68,29 @@
 }
 
 @media (min-width: 768px) {
+  .btn-product-filter-expression {
+    display: none;
+  }
   .product-filter-container {
     flex: 1;
     margin-left: 20px;
     margin-bottom: 0px;
+    padding: 10px 15px;
+  }
+  .product-filter-form {
+    display: flex;
+  }
+  .product-filter-name-container {
+    flex: 1;
+    margin-bottom: 0px;
+    margin-right: 20px;
+  }
+  .product-filter-bottom-container {
+    flex: 1;
+  }
+}
+@media (min-width: 992px) {
+  .btn-product-filter-expression {
+    display: unset;
   }
 }
