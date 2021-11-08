@@ -6,9 +6,10 @@ type Props = {
   pageCount: number;
   pageRangeDisplayed: number;
   onChange?: (pageNumber: number) => void;
+  forcePage?: number;
 };
 
-const Pagbar = ({ pageCount, pageRangeDisplayed, onChange }: Props) => {
+const Pagbar = ({ pageCount, pageRangeDisplayed, onChange, forcePage }: Props) => {
   return (
     <ReactPaginate
       pageCount={pageCount}
@@ -32,6 +33,7 @@ const Pagbar = ({ pageCount, pageRangeDisplayed, onChange }: Props) => {
       activeLinkClassName="pagination-link-active"
       disabledClassName="arrow-inactive"
       onPageChange={(items) => (onChange ? onChange(items.selected) : {})}
+      forcePage={forcePage}
     />
   );
 };

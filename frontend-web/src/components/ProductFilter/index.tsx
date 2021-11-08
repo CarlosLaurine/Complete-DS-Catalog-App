@@ -6,19 +6,23 @@ import { Category } from 'types/category';
 import { requestAPI } from 'util/requests';
 import './style.css';
 
-type ProductFilterData = {
+export type ProductFilterData = {
   name: string;
   category: Category | null;
 };
 
-const ProductFilter = () => {
+type Props = {
+  onSubmitFilter: (data: ProductFilterData) => void;
+};
+
+const ProductFilter = ({ onSubmitFilter }: Props) => {
   const [selectCategories, setSelectCategories] = useState<Category[]>([]);
 
   const { register, handleSubmit, control, getValues, setValue } =
     useForm<ProductFilterData>();
 
   const onSubmit = (formData: ProductFilterData) => {
-    console.log('SENT', formData);
+    onSubmitFilter(formData);
   };
 
   const handleClearForm = () => {
@@ -34,7 +38,7 @@ const ProductFilter = () => {
       category: getValues('category'),
     };
 
-    console.log('SENT', formObj);
+    onSubmitFilter(formObj);
   };
 
   useEffect(() => {

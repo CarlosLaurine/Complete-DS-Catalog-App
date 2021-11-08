@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
 import Pagbar from 'components/Pagbar';
-import ProductFilter from 'components/ProductFilter';
+import ProductFilter, { ProductFilterData } from 'components/ProductFilter';
 import ProductCardCRUD from 'pages/Admin/Products/ProductCardCRUD';
 import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -11,6 +11,7 @@ import './style.css';
 
 type ControlComponentsData = {
   activePage: number;
+  filterData: ProductFilterData;
 };
 const List = () => {
   const [springPage, setSpringPage] = useState<SpringPage<Product>>();
@@ -18,10 +19,15 @@ const List = () => {
   const [controlComponentsData, setControlComponentsData] =
     useState<ControlComponentsData>({
       activePage: 0,
+      filterData: { name: '', category: null },
     });
 
   const handlePageChange = (pageNumber: number) => {
-    setControlComponentsData({ activePage: pageNumber });
+    setControlComponentsData({ activePage: pageNumber, filterData: controlComponentsData.filterData });
+  };
+
+  const handleSubmitFilter = (data: ProductFilterData) => {
+    setControlComponentsData({ activePage: 0, filterData: data });
   };
 
   const getProducts = useCallback(() => {
@@ -31,6 +37,8 @@ const List = () => {
       params: {
         page: controlComponentsData.activePage,
         size: 3,
+        name: controlComponentsData.filterData.name,
+        categoryId: controlComponentsData.filterData.category?.id
       },
     };
     requestAPI(axiosParams).then((response) => {
@@ -50,7 +58,7 @@ const List = () => {
             ADD
           </button>
         </Link>
-        <ProductFilter />
+        <ProductFilter onSubmitFilter={handleSubmitFilter} />
       </div>
       <div className="row">
         {springPage?.content.map((product) => {
@@ -65,6 +73,7 @@ const List = () => {
         pageCount={springPage ? springPage.totalPages : 0}
         pageRangeDisplayed={3}
         onChange={handlePageChange}
+        forcePage={springPage?.number}
       />
     </div>
   );
