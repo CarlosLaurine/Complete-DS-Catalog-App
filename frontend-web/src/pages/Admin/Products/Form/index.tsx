@@ -1,3 +1,4 @@
+import './style.css';
 import { AxiosRequestConfig } from 'axios';
 import { useEffect, useState } from 'react';
 import CurrencyInput from 'react-currency-input-field';
@@ -7,7 +8,7 @@ import Select from 'react-select';
 import { Category } from 'types/category';
 import { Product } from 'types/product';
 import { requestAPI } from 'util/requests';
-import './style.css';
+import { toast } from 'react-toastify';
 
 type URLParam = {
   productId: string;
@@ -63,9 +64,14 @@ const Form = () => {
       withCredentials: true,
     };
 
-    requestAPI(axiosParams).then((response) => {
-      history.push('/admin/products');
-    });
+    requestAPI(axiosParams)
+      .then((response) => {
+        toast.success('Product Succesfully Registered!');
+        history.push('/admin/products');
+      })
+      .catch(() => {
+        toast.error('Error while Registering the Product');
+      });
   };
 
   const handleCancel = () => {
