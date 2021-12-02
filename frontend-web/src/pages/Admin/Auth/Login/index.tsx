@@ -6,8 +6,8 @@ import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { AuthContext } from 'AuthContext';
 import { requestAPILogin } from 'util/requests';
-import { getTokenData } from 'util/auth';
 import { getAuthData, saveAuthData } from 'util/auth-storage';
+import { getTokenData } from 'util/token';
 
 type CredentialsDTO = {
   username: string;
