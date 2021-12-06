@@ -23,4 +23,19 @@ describe("hasAnyRoles Tests", () => {
         //ASSERT
         expect(result).toEqual(true);
     })
+
+    test('hasAnyRoles Function should return FALSE When User DOES NOT have given Role', () => {
+        //MOCK getTokenData BEHAVIOUR
+        jest.spyOn(TokenModule,"getTokenData").mockReturnValue({
+            exp:0,
+            user_name:"",
+            authorities: ['ROLE_OPERATOR']
+        })
+        
+        //ARRANGE && ACT
+        const result = hasAnyRoles(["ROLE_ADMIN"]);
+
+        //ASSERT
+        expect(result).toEqual(false);
+    })
 })
